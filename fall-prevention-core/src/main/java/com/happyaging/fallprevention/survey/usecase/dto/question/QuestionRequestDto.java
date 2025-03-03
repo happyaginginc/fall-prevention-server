@@ -4,10 +4,8 @@ import com.happyaging.fallprevention.product.usecase.dto.ProductQuestionDto;
 import com.happyaging.fallprevention.survey.entity.question.Question;
 import com.happyaging.fallprevention.survey.entity.question.QuestionCategory;
 import com.happyaging.fallprevention.survey.entity.question.QuestionType;
-import io.micrometer.common.KeyValues;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import lombok.Setter;
 
 import java.util.List;
 

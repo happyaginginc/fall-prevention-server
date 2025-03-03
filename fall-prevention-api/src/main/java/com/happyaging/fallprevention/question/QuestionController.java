@@ -54,7 +54,7 @@ public class QuestionController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ApiSuccessResult<QuestionResponseDto>> getQuestion(@PathVariable Long id) {
+    public ResponseEntity<ApiSuccessResult<QuestionResponseDto>> getQuestion(@PathVariable("id") Long id) {
         Question question = questionAdminUseCase.getQuestionById(id);
         List<ProductQuestion> productQuestions = productService.getAllByQuestionId(id);
         return ResponseEntity.status(HttpStatus.OK)
@@ -82,7 +82,7 @@ public class QuestionController {
     @PutMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN') and isAuthenticated()")
     public ResponseEntity<ApiSuccessResult<QuestionResponseDto>> updateQuestion(
-            @PathVariable Long id,
+            @PathVariable("id") Long id,
             @Valid @RequestBody  QuestionRequestDto questionDto
     ) {
         Question updatedQuestion = questionAdminUseCase.createQuestion(questionDto);
@@ -109,7 +109,7 @@ public class QuestionController {
 
     @DeleteMapping("/{questionId}")
     @PreAuthorize("hasRole('ADMIN') and isAuthenticated()")
-    public ResponseEntity<ApiSuccessResult<Long>> deleteQuestion(@PathVariable Long questionId) {
+    public ResponseEntity<ApiSuccessResult<Long>> deleteQuestion(@PathVariable("questionId") Long questionId) {
         Long deletedQuestionId = questionAdminUseCase.deleteAndReorderQuestion(questionId);
 
         return ResponseEntity.status(HttpStatus.OK)

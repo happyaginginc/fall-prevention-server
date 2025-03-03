@@ -3,6 +3,7 @@ package com.happyaging.fallprevention.survey.persistence;
 import com.happyaging.fallprevention.survey.entity.question.Question;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
@@ -17,7 +18,7 @@ public interface QuestionRepository extends JpaRepository<Question, Long> {
 
     // 특정 순서보다 큰 질문 조회
     @Query("SELECT q FROM Question q WHERE q.orderNumber > :orderNumber")
-    List<Question> findByOrderNumberGreaterThan(Integer orderNumber);
+    List<Question> findByOrderNumberGreaterThan(@Param("orderNumber")Integer orderNumber);
 
 
 }
